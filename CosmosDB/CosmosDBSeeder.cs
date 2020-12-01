@@ -17,11 +17,7 @@ namespace CarvedRockSoftware.Seeder.CosmosDB
 
         public CosmosDBSeeder()
         {
-            _cosmosClient = new CosmosClient(ConnectionString, new CosmosClientOptions
-            {
-                MaxTcpConnectionsPerEndpoint = 16,
-                MaxRequestsPerTcpConnection = 4
-            });
+            _cosmosClient = new CosmosClient(ConnectionString);
 
             var faker = new Faker();
             _seedData = Enumerable.Range(1, 1000).Select(i => new ProductItem
