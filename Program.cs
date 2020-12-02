@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using CarvedRockSoftware.Seeder.AzureSearch;
+using CarvedRockSoftware.Seeder.AzureSql;
 using CarvedRockSoftware.Seeder.CosmosDB;
 using Spectre.Console;
 
