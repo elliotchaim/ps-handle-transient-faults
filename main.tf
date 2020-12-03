@@ -35,7 +35,7 @@ resource "azurerm_search_service" "application" {
   name                = random_string.application_name.result
   location            = var.location
   resource_group_name = var.resource_group_name
-  sku                 = "free"
+  sku                 = "standard"
 }
 
 resource "azurerm_sql_server" "application" {
@@ -47,22 +47,21 @@ resource "azurerm_sql_server" "application" {
   administrator_login_password = "password123!"
 }
 
-resource "azurerm_mysql_firewall_rule" "application" {
+resource "azurerm_sql_firewall_rule" "application" {
   name                = "AllowAny"
   resource_group_name = var.resource_group_name
-  server_name         = random_string.application_name.result
+  server_name         = azurerm_sql_server.application.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
 }
 
-resource "azurerm_mssql_database" "application" {
-  name           = random_string.application_name.result
-  server_id      = azurerm_sql_server.application.id
-  collation      = "SQL_Latin1_General_CP1_CI_AS"
-  license_type   = "LicenseIncluded"
-  sku_name       = "Basic"
+resource "azurerm_sql_database" "application" {
+  name                = random_string.application_name.result
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  server_name         = azurerm_sql_server.application.name
+  edition             = "Basic"
 }
-
 
 resource "azurerm_cosmosdb_account" "db" {
   name                = random_string.application_name.result
