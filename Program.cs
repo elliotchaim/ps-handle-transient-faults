@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CarvedRockSoftware.Seeder.AzureSearch;
 using CarvedRockSoftware.Seeder.AzureSql;
+using CarvedRockSoftware.Seeder.AzureStorageQueues;
+using CarvedRockSoftware.Seeder.AzureStorageTables;
 using CarvedRockSoftware.Seeder.CosmosDB;
 using Spectre.Console;
 
@@ -19,7 +21,8 @@ namespace CarvedRockSoftware.Seeder
                 var input = AnsiConsole.Prompt(new TextPrompt<string>("Select a service to seed")
                     .AddChoice(MenuOption.AzureSearch.ToString())
                     .AddChoice(MenuOption.AzureSql.ToString())
-                    .AddChoice(MenuOption.AzureStorage.ToString())
+                    .AddChoice(MenuOption.AzureStorageQueues.ToString())
+                    .AddChoice(MenuOption.AzureStorageTables.ToString())
                     .AddChoice(MenuOption.CosmosDB.ToString())
                     .InvalidChoiceMessage("[red]That's not a valid choice[/]"));
                 choice = Enum.Parse<MenuOption>(input, true);
@@ -29,7 +32,8 @@ namespace CarvedRockSoftware.Seeder
             {
                 MenuOption.AzureSearch => new AzureSearchSeeder(),
                 MenuOption.AzureSql => new AzureSqlSeeder(),
-                MenuOption.AzureStorage => new AzureStorageSeeder(),
+                MenuOption.AzureStorageQueues => new AzureStorageQueuesSeeder(),
+                MenuOption.AzureStorageTables => new AzureStorageTablesSeeder(),
                 MenuOption.CosmosDB => new CosmosDBSeeder(),
                 _ => throw new NotSupportedException()
             };
