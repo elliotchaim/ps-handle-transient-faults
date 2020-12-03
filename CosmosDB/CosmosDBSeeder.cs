@@ -10,7 +10,7 @@ namespace CarvedRockSoftware.Seeder.CosmosDB
 {
     public class CosmosDBSeeder : ISeeder
     {
-        private const string ConnectionString = "AccountEndpoint=https://srcfvghbjnkm.documents.azure.com:443/;AccountKey=WFUAwVQzWjTCXTmk5G1QhSTxlgjnV5STX5GsDWIHgktsmoyRvlYjLi7exvxlztXQkJtMfxIqY6Jywv0pxymjsQ==;";
+        private const string ConnectionString = "";
 
         private readonly CosmosClient _cosmosClient;
         private readonly IEnumerable<ProductItem> _seedData;
@@ -20,7 +20,7 @@ namespace CarvedRockSoftware.Seeder.CosmosDB
             _cosmosClient = new CosmosClient(ConnectionString);
 
             var faker = new Faker();
-            _seedData = Enumerable.Range(1, 1000).Select(i => new ProductItem
+            _seedData = Enumerable.Range(1, 100).Select(i => new ProductItem
             {
                 Ean13 = faker.Commerce.Ean13(),
                 Category = faker.Commerce.Categories(1).First(),

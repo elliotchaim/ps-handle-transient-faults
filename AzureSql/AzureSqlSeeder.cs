@@ -10,7 +10,7 @@ namespace CarvedRockSoftware.Seeder.AzureSql
 {
     public class AzureSqlSeeder : ISeeder
     {
-        private const string ConnectionString = "Server=tcp:sergserg.database.windows.net,1433;Initial Catalog=aarf;Persist Security Info=False;User ID=crs;Password=password123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private const string ConnectionString = "";
         
         private readonly IEnumerable<ProductEntity> _seedData;
 

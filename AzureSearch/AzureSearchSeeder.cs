@@ -14,8 +14,8 @@ namespace CarvedRockSoftware.Seeder.AzureSearch
 {
     public class AzureSearchSeeder : ISeeder
     {
-        private const string ServiceEndpointUri = "https://wdefaere.search.windows.net/";
-        private const string ApiKey = "4F84A614440005923D84CCCC41E55B45";
+        private const string ServiceEndpointUri = "";
+        private const string ApiKey = "";
 
         private readonly SearchIndexClient _searchIndexClient;
         private readonly IEnumerable<ProductDocument> _seedData;
@@ -27,7 +27,7 @@ namespace CarvedRockSoftware.Seeder.AzureSearch
                 new AzureKeyCredential(ApiKey));
 
             var faker = new Faker();
-            _seedData = Enumerable.Range(1, 1000).Select(i => new ProductDocument
+            _seedData = Enumerable.Range(1, 100).Select(i => new ProductDocument
             {
                 Ean13 = faker.Commerce.Ean13(),
                 Name = faker.Commerce.ProductName(),
@@ -45,9 +45,7 @@ namespace CarvedRockSoftware.Seeder.AzureSearch
                 await _searchIndexClient.CreateOrUpdateIndexAsync(index);
 
                 var searchClient = _searchIndexClient.GetSearchClient(nameof(ProductDocument).ToLower());
-                var results = await Task.WhenAll(_seedData.Select(async product => await IndexProduct(searchClient, product)));
-
-                throw new NotImplementedException();
+                await Task.WhenAll(_seedData.Select(async product => await IndexProduct(searchClient, product)));
             }
             catch (Exception exception)
             {

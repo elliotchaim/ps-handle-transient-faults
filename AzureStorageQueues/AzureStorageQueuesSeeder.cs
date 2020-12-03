@@ -13,7 +13,7 @@ namespace CarvedRockSoftware.Seeder.AzureStorageQueues
 {
     public class AzureStorageQueuesSeeder : ISeeder
     {
-        private const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=wewegergse;AccountKey=AHDS8cQN5K20yaM4Bd3F2CkLPZm6aoNE+W1khi4pfVB4GO2FGKAG6P2zeI0BklN8wZoRIXGzWbJRguahSzKYvA==;EndpointSuffix=core.windows.net";
+        private const string ConnectionString = "";
 
         private readonly QueueClient _queueClient;
         private readonly IEnumerable<(int Id, string Name, string Description)> _seedData;

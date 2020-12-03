@@ -10,7 +10,7 @@ namespace CarvedRockSoftware.Seeder.AzureStorageTables
 {
     public class AzureStorageTablesSeeder : ISeeder
     {
-        private const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=wewegergse;AccountKey=AHDS8cQN5K20yaM4Bd3F2CkLPZm6aoNE+W1khi4pfVB4GO2FGKAG6P2zeI0BklN8wZoRIXGzWbJRguahSzKYvA==;EndpointSuffix=core.windows.net";
+        private const string ConnectionString = "";
 
         private readonly CloudTableClient _cloudTableClient;
         private readonly IEnumerable<ProductTableEntity> _seedData;
