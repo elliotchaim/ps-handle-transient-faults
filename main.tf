@@ -47,14 +47,6 @@ resource "azurerm_sql_server" "application" {
   administrator_login_password = "password123!"
 }
 
-resource "azurerm_sql_firewall_rule" "application" {
-  name                = "AllowAny"
-  resource_group_name = var.resource_group_name
-  server_name         = azurerm_sql_server.application.name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "0.0.0.0"
-}
-
 resource "azurerm_sql_database" "application" {
   name                = random_string.application_name.result
   location            = var.location
@@ -75,11 +67,6 @@ resource "azurerm_cosmosdb_account" "db" {
     max_interval_in_seconds = 10
     max_staleness_prefix    = 200
   }
-
-#   geo_location {
-#     location          = "uksouth"
-#     failover_priority = 1
-#   }
 
   geo_location {
     location          = var.location
